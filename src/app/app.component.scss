@@ -1,28 +1,35 @@
-.container{
-    overflow: hidden;
-    .header{
+.container {
+    .header {
         padding: 7px 0px;
-        button.sidenav-btn{
+
+        button.sidenav-btn {
             background-color: transparent;
             color: white;
             border: none;
             cursor: pointer;
         }
-        .app-title{
+
+        .app-title {
             margin-left: 10px;
             text-transform: capitalize;
         }
     }
-    
-    .sidenav-container{
-        mat-icon.nav-link-icon{
+
+    .sidenav-container {
+        mat-icon.nav-link-icon {
             margin-right: 7px;
+        }
+    }
+
+    .sidenav-content {
+        &.mat-drawer-content {
+            height: auto;
         }
     }
 }
 
 @media screen and (max-width:767px) {
-    .sidenav-content{
+    .sidenav-content {
         margin-left: 0px !important;
     }
 }
