@@ -9,13 +9,14 @@ import { AddPersonDialogComponent } from '../add-person-dialog/add-person-dialog
   styleUrls: ['./personal-info.component.scss'],
 })
 export class PersonalInfoComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddPersonDialogComponent, {
       width: '100vw',
+      height: '90vh'
     });
 
     dialogRef.afterClosed().subscribe((result) => {
