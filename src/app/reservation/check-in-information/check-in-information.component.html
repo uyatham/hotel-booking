@@ -1,0 +1,71 @@
+<form [formGroup]="checkInForm">
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label> Check In </mat-label>
+      <input
+        matInput
+        [matDatepicker]="checkInpicker"
+        formControlName="checkIn"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="checkInpicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #checkInpicker></mat-datepicker>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label> Check out </mat-label>
+      <input
+        matInput
+        [matDatepicker]="checkOutpicker"
+        formControlName="checkOut"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="checkOutpicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #checkOutpicker></mat-datepicker>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label> Room Type </mat-label>
+      <mat-select formControlName="roomType">
+        <mat-option value="2"> Standard (2x) </mat-option>
+        <mat-option value="3"> Deluxe (3X) </mat-option>
+        <mat-option value="4"> Suite (4X) </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label> Persons </mat-label>
+      <mat-select formControlName="numberOfPersons">
+        <mat-option value="1"> 1 </mat-option>
+        <mat-option value="2"> 2 </mat-option>
+        <mat-option value="3"> 3</mat-option>
+        <mat-option value="4"> 4 </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+  <section class="section-container">
+    <label>Food Service:</label>
+    <mat-checkbox class="section-margin">Breakfast</mat-checkbox>
+    <mat-checkbox class="section-margin">Lunch</mat-checkbox>
+    <mat-checkbox class="section-margin">Dinner</mat-checkbox>
+  </section>
+
+  <section class="section-container">
+    <label class="section-margin"> Free pick up: </label>
+    <mat-radio-group aria-label="Free pick u" formControlName="pickUp">
+      <mat-radio-button class="section-margin" value="Yes">
+        Yes, Sure
+      </mat-radio-button>
+      <mat-radio-button class="section-margin" value="No">
+        No, I already rented a car
+      </mat-radio-button>
+    </mat-radio-group>
+  </section>
+</form>

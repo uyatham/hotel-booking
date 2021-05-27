@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title> Room Reservation Form </mat-card-title>
+    <mat-card-subtitle> Please complete the form below </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-horizontal-stepper linear #stepper>
+      <mat-step>
+        <ng-template matStepLabel> You're stay </ng-template>
+        <app-check-in-information></app-check-in-information>
+        <button mat-button (click)="stepper.next()">Next</button>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel> Personal Data </ng-template>
+        <app-personal-info></app-personal-info>
+        <button mat-button (click)="stepper.previous()">Previous</button>
+        <button mat-button (click)="stepper.next()">Next</button>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel> Payment </ng-template>
+        <app-payment></app-payment>
+        <button mat-button (click)="stepper.previous()">Previous</button>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-card-content>
+</mat-card>
