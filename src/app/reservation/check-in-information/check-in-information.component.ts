@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -8,6 +8,8 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { checkBoxValidator } from '../utils/validation.util';
+
 @Component({
   selector: 'app-check-in-information',
   templateUrl: './check-in-information.component.html',
@@ -16,6 +18,15 @@ import {
 export class CheckInInformationComponent implements OnInit {
   checkInForm: FormGroup;
   foodControls: AbstractControl[];
+  selectedFoodOptions = [];
+  checkInDateConfig = {
+    min: new Date(),
+  };
+  checkOutDateConfig = {
+    min: new Date(),
+  };
+
+  personsOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   roomOptions = [
     { key: 'Standard (2x)', value: 2 },
     { key: 'Deluxe (3X)', value: 3 },
@@ -27,6 +38,8 @@ export class CheckInInformationComponent implements OnInit {
   ];
   foodOptions = ['Breakfast', 'Lunch', 'Dinner'];
 
+  @Output() changeFood = new EventEmitter<string[]>();
+
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
@@ -34,9 +47,12 @@ export class CheckInInformationComponent implements OnInit {
       checkIn: ['', Validators.required],
       checkOut: ['', Validators.required],
       numberOfPersons: ['', Validators.required],
-      pickUp: [''],
+      pickUp: ['', Validators.required],
       roomType: ['', Validators.required],
-      typesOfFood: this.formBuilder.array([], Validators.required),
+      typesOfFood: this.formBuilder.array(
+        [],
+        [Validators.required, checkBoxValidator()]
+      ),
     });
 
     this.setTypesOfFood();
@@ -52,6 +68,27 @@ export class CheckInInformationComponent implements OnInit {
     this.foodOptions.forEach(() => {
       const formControl = new FormControl(false);
       typesOfFoodFormArray.push(formControl);
+    });
+  }
+
+  findIndexOfFoodOptions(item): number {
+    return this.selectedFoodOptions.findIndex((food) => food === item);
+  }
+
+  onChange(value): void {
+    const index = this.findIndexOfFoodOptions(value);
+    if (index !== -1) {
+      this.selectedFoodOptions.splice(index, 1);
+    } else {
+      this.selectedFoodOptions.push(value);
+    }
+    this.changeFood.emit(this.selectedFoodOptions);
+  }
+
+  checkInDateChange(): void {
+    this.checkOutDateConfig.min = this.checkInForm.value.checkIn;
+    this.checkInForm.patchValue({
+      checkOut: '',
     });
   }
 }

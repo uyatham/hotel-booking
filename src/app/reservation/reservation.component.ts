@@ -5,4 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.scss'],
 })
-export class ReservationComponent {}
+export class ReservationComponent {
+  selectedFoodOptions = [];
+  changeFood(foodOptions): void {
+    this.selectedFoodOptions = foodOptions;
+  }
+}

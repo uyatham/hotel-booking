@@ -7,8 +7,18 @@
     <mat-horizontal-stepper linear #stepper>
       <mat-step>
         <ng-template matStepLabel> You're stay </ng-template>
-        <app-check-in-information></app-check-in-information>
-        <button mat-button (click)="stepper.next()">Next</button>
+        <app-check-in-information
+          (changeFood)="changeFood($event)"
+          #checkIn
+        ></app-check-in-information>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="stepper.next()"
+          [disabled]="!checkIn?.checkInForm?.valid"
+        >
+          Next
+        </button>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel> Personal Data </ng-template>
