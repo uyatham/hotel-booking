@@ -1,60 +1,83 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>Guest Information</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
+<section class="example-card">
+  <h2 mat-dialog-title>Guest Information</h2>
+
+  <mat-dialog-content>
     <form [formGroup]="personForm">
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Name</mat-label>
-          <input matInput formControlName="name" />
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Surname</mat-label>
-          <input matInput formControlName="surname" />
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Age</mat-label>
-          <input matInput formControlName="age" />
-        </mat-form-field>
-      </p>
-      <section class="section-container">
-        <label class="section-margin"> Gender: </label>
-        <mat-radio-group aria-label="Gender" formControlName="gender">
-          <mat-radio-button class="section-margin" value="M">
-            Male
-          </mat-radio-button>
-          <mat-radio-button class="section-margin" value="F">
-            Female
-          </mat-radio-button>
-        </mat-radio-group>
-      </section>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="address" />
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Phone</mat-label>
-          <input matInput formControlName="phone" />
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" />
-        </mat-form-field>
-      </p>
+      <div
+        fxLayout="row wrap"
+        fxLayoutGap="32px"
+        fxLayoutAlign="flex-start">
+        <div class="form-ctrl">
+          <mat-form-field appearance="outline">
+            <mat-label>First name</mat-label>
+            <input matInput formControlName="name" />
+          </mat-form-field>
+        </div>
+
+        <div class="form-ctrl">
+          <mat-form-field appearance="outline">
+            <mat-label>Last name</mat-label>
+            <input matInput formControlName="surname" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="form-ctrl">
+        <section class="section-container">
+          <label class="section-margin"> Gender: </label>
+          <mat-radio-group
+            id="gender"
+            aria-label="Gender"
+            formControlName="gender">
+            <mat-radio-button class="section-margin" value="M">
+              Male
+            </mat-radio-button>
+            <mat-radio-button class="section-margin" value="F">
+              Female
+            </mat-radio-button>
+          </mat-radio-group>
+        </section>
+      </div>
+
+      <div fxLayout="row wrap"
+        fxLayoutGap="32px"
+        fxLayoutAlign="flex-start">
+
+        <div class="form-ctrl">
+          <mat-form-field appearance="outline">
+            <mat-label>Age</mat-label>
+            <input matInput formControlName="age" />
+          </mat-form-field>
+        </div>
+
+        <div class="form-ctrl">
+          <mat-form-field appearance="outline">
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address" />
+          </mat-form-field>
+        </div>
+
+        <div class="form-ctrl">
+          <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input matInput formControlName="phone" />
+          </mat-form-field>
+        </div>
+
+        <div class="form-ctrl">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" />
+          </mat-form-field>
+        </div>
+      </div>
     </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-stroked-button color="primary">Ok</button>
-    <button mat-stroked-button color="primary">Cancel</button>
-  </mat-card-actions>
-</mat-card>
+  </mat-dialog-content>
+
+  <mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="flex-end">
+    <div>
+      <button mat-raised-button color="primary">Ok</button>
+      <button mat-raised-button color="primary">Cancel</button>
+    </div>
+  </mat-dialog-actions>
+</section>

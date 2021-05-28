@@ -1,6 +1,24 @@
 .section-container {
   margin: 12px 0;
 }
+
 .section-margin {
   margin: 10px;
+}
+
+.form-ctrl {
+  width: 45%;
+  display: inline-block;
+
+  .mat-form-field {
+    width: 100%;
+
+    .mat-form-field-infix {
+      max-width: 300px;
+    }
+  }
+
+  #gender {
+    display: inline-block;
+  }
 }

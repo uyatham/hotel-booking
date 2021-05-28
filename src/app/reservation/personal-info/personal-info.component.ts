@@ -15,8 +15,8 @@ export class PersonalInfoComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddPersonDialogComponent, {
-      width: '100vw',
-      height: '90vh'
+      width: '55vw',
+      height: '70vh'
     });
 
     dialogRef.afterClosed().subscribe((result) => {
