@@ -1,71 +1,130 @@
-<form [formGroup]="checkInForm">
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label> Check In </mat-label>
-      <input
-        matInput
-        [matDatepicker]="checkInpicker"
-        formControlName="checkIn"
-      />
-      <mat-datepicker-toggle
-        matSuffix
-        [for]="checkInpicker"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #checkInpicker></mat-datepicker>
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label> Check out </mat-label>
-      <input
-        matInput
-        [matDatepicker]="checkOutpicker"
-        formControlName="checkOut"
-      />
-      <mat-datepicker-toggle
-        matSuffix
-        [for]="checkOutpicker"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #checkOutpicker></mat-datepicker>
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label> Room Type </mat-label>
-      <mat-select formControlName="roomType">
-        <mat-option value="2"> Standard (2x) </mat-option>
-        <mat-option value="3"> Deluxe (3X) </mat-option>
-        <mat-option value="4"> Suite (4X) </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label> Persons </mat-label>
-      <mat-select formControlName="numberOfPersons">
-        <mat-option value="1"> 1 </mat-option>
-        <mat-option value="2"> 2 </mat-option>
-        <mat-option value="3"> 3</mat-option>
-        <mat-option value="4"> 4 </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </p>
-  <section class="section-container">
-    <label>Food Service:</label>
-    <mat-checkbox class="section-margin">Breakfast</mat-checkbox>
-    <mat-checkbox class="section-margin">Lunch</mat-checkbox>
-    <mat-checkbox class="section-margin">Dinner</mat-checkbox>
-  </section>
+<section class="example-card">
+  <form [formGroup]="checkInForm">
+    <div
+      fxLayout="row wrap"
+      fxLayout.lt-sm="column"
+      fxLayoutGap="20px"
+      fxLayoutAlign="flex-start"
+    >
+      <div
+        fxFlex="0 1 calc(33.3% - 32px)"
+        fxFlex.lt-md="0 1 calc(50% - 32px)"
+        fxFlex.lt-sm="100%"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label> Check In </mat-label>
+          <input
+            matInput
+            [matDatepicker]="checkInpicker"
+            formControlName="checkIn"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="checkInpicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #checkInpicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div
+        fxFlex="0 1 calc(33.3% - 32px)"
+        fxFlex.lt-md="0 1 calc(50% - 32px)"
+        fxFlex.lt-sm="100%"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label> Check out </mat-label>
+          <input
+            matInput
+            [matDatepicker]="checkOutpicker"
+            formControlName="checkOut"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="checkOutpicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #checkOutpicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
 
-  <section class="section-container">
-    <label class="section-margin"> Free pick up: </label>
-    <mat-radio-group aria-label="Free pick u" formControlName="pickUp">
-      <mat-radio-button class="section-margin" value="Yes">
-        Yes, Sure
-      </mat-radio-button>
-      <mat-radio-button class="section-margin" value="No">
-        No, I already rented a car
-      </mat-radio-button>
-    </mat-radio-group>
-  </section>
-</form>
+    <div
+      fxLayout="row wrap"
+      fxLayout.lt-sm="column"
+      fxLayoutGap="20px"
+      fxLayoutAlign="flex-start"
+    >
+      <div
+        fxFlex="0 1 calc(33.3% - 32px)"
+        fxFlex.lt-md="0 1 calc(50% - 32px)"
+        fxFlex.lt-sm="100%"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label> Room Type </mat-label>
+          <mat-select formControlName="roomType">
+            <mat-option
+              *ngFor="let option of roomOptions"
+              [value]="option.value"
+            >
+              {{ option.key }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div
+        fxFlex="0 1 calc(33.3% - 32px)"
+        fxFlex.lt-md="0 1 calc(50% - 32px)"
+        fxFlex.lt-sm="100%"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label> Persons </mat-label>
+          <mat-select formControlName="numberOfPersons">
+            <mat-option value="1"> 1 </mat-option>
+            <mat-option value="2"> 2 </mat-option>
+            <mat-option value="3"> 3</mat-option>
+            <mat-option value="4"> 4 </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div
+      fxLayout="row wrap"
+      fxLayout.lt-sm="column"
+      fxLayoutGap="20px"
+      fxLayoutAlign="flex-start"
+    >
+      <ng-container formArrayName="typesOfFood">
+        <section class="section-container">
+          <label>Food Service:</label>
+          <div *ngFor="let control of foodControls; let i = index">
+            <mat-checkbox class="section-margin" [formControlName]="i">
+              {{ foodOptions[i] }}
+            </mat-checkbox>
+          </div>
+        </section>
+      </ng-container>
+    </div>
+
+    <div
+      fxLayout="row wrap"
+      fxLayout.lt-sm="column"
+      fxLayoutGap="20px"
+      fxLayoutAlign="flex-start"
+    >
+      <section class="section-container">
+        <label id="pickUp">Pick up</label>
+        <mat-radio-group
+          aria-labelledby="pickUp"
+          class="radio-group"
+          formControlName="pickUp"
+        >
+          <mat-radio-button class="radio-button" value="Y">
+            Yes, Sure
+          </mat-radio-button>
+          <mat-radio-button class="radio-button" value="N">
+            No, I already rented a car
+          </mat-radio-button>
+        </mat-radio-group>
+      </section>
+    </div>
+  </form>
+</section>
