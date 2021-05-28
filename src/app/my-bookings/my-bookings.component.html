@@ -1,0 +1,30 @@
+<h1 class="my-bookings-head">My Bookings</h1>
+<mat-divider></mat-divider>
+<div class="booking-container">
+  <ng-container *ngFor="let booking of bookings">
+    <h2 class="booking-head">{{ booking.hotelName }}</h2>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{ booking.location }} </mat-panel-title>
+          <mat-panel-description>
+            {{ booking.guests }} guests
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div fxLayout="row wrap" fxLayout.xs="column">
+          <label fxFlex="20%"><b>check in :</b></label>
+          <span fxFlex="80%">{{ booking.chekinTime }}</span>
+        </div>
+        <div fxLayout="row wrap" fxLayout.xs="column">
+          <label fxFlex="20%"><b>check out :</b></label>
+          <span fxFlex="80%">{{ booking.chekoutTime }}</span>
+        </div>
+        <div fxLayout="row wrap" fxLayout.xs="column">
+          <label fxFlex="20%"><b>Number of guests :</b></label>
+          <span fxFlex="80%">{{ booking.guests }}</span>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ng-container>
+</div>

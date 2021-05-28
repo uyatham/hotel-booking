@@ -9,6 +9,13 @@ const routes: Routes = [
         (m) => m.ReservationModule
       ),
   },
+  {
+    path: 'my-bookings',
+    loadChildren: () =>
+      import('./my-bookings/my-bookings.module').then(
+        (m) => m.MyBookingsModule
+      ),
+  },
 ];
 
 @NgModule({
